@@ -7,7 +7,7 @@ import Img from "gatsby-image"
 export default function Banner() {
   const data = useStaticQuery(graphql`
     query {
-      productBanner: file(relativePath: { eq: "products-banner.webp" }) {
+      productBanner: file(relativePath: { eq: "products-banner.png" }) {
         childImageSharp {
           fluid(maxWidth: 850) {
             ...GatsbyImageSharpFluid_noBase64

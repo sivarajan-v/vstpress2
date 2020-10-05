@@ -1,12 +1,28 @@
 import React from "react"
-import introImg from "../../images/intro.webp"
 import containerStyles from "./intro.module.scss"
+import { useStaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 
 export default function Intro() {
+  const data = useStaticQuery(graphql`
+    query {
+      introduction: file(relativePath: { eq: "intro.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 847) {
+            ...GatsbyImageSharpFluid_noBase64
+          }
+        }
+      }
+    }
+  `)
   return (
     <div className={containerStyles.container}>
       <h3>Your friendly neighborhood printing press</h3>
-      <img src={introImg} alt="Introduction" />
+      <Img
+        fluid={data.introduction.childImageSharp.fluid}
+        style={{ maxWidth: "847px", margin: "0 auto" }}
+        alt="Introduction"
+      />
       <p>
         We are in this industry since 80's for providing reliable printing
         services. Our journey started with a single letterpress machine and have
