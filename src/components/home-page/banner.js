@@ -1,9 +1,22 @@
 import React from "react"
 import bg from "../../images/bg.jpg"
 import highlow from "../../images/high-low.png"
-import productBanner from "../../images/products-banner.webp"
+import { useStaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 
 export default function Banner() {
+  const data = useStaticQuery(graphql`
+    query {
+      productBanner: file(relativePath: { eq: "products-banner.webp" }) {
+        childImageSharp {
+          fluid(maxWidth: 850) {
+            ...GatsbyImageSharpFluid_noBase64
+          }
+        }
+      }
+    }
+  `)
+
   return (
     <div
       style={{
@@ -31,13 +44,9 @@ export default function Banner() {
         src={highlow}
         alt="High Quality is now possible at Low Price"
       />
-      <img
-        style={{
-          maxWidth: "100%",
-          display: "block",
-          margin: " 0 auto",
-        }}
-        src={productBanner}
+      <Img
+        fluid={data.productBanner.childImageSharp.fluid}
+        style={{ maxWidth: "850px", margin: "0 auto" }}
         alt="Print Products"
       />
     </div>
