@@ -4,6 +4,7 @@ import Banner from "../components/home-page/banner"
 import Features from "../components/home-page/features"
 import Intro from "../components/home-page/intro"
 import SectionDivider from "../components/home-page/section-divider"
+import FeaturedProducts from "../components/home-page/featured-products"
 
 export default function () {
   return (
@@ -13,6 +14,7 @@ export default function () {
       <Features />
       <SectionDivider />
       <Intro />
+      <FeaturedProducts />
     </div>
   )
 }
